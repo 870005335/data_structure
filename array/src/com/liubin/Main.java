@@ -1,18 +1,24 @@
 package com.liubin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        Array arr = new Array();
-        arr.add(1);
-        arr.addFirst(3);
-        arr.add(2, 5);
-        for (int i = 0; i < arr.getSize(); i++) {
-            System.out.println(arr.getData()[i]);
-        }
-        System.out.println(arr.get(2));
-        System.out.println(arr.toString());
-        System.out.println(arr.contains(6));
+        Array<Integer> arr = new Array<>(20);
 
-
+//        for (int i = 0; i < 10; i++) {
+//            arr.add(i);
+//        }
+//
+//        arr.add(2);
+//        arr.add(5);
+//        List<Integer> allIndex = arr.getAllIndex(2);
+//        System.out.println(allIndex.size());
+//        System.out.println(arr.getSize());
+//        arr.removeElement(11);
+//        System.out.println(arr.getSize());
+//        arr.removeAllElement(5);
+//        System.out.println(arr.getSize());
     }
 }

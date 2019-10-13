@@ -1,0 +1,29 @@
+package com.liubin;
+
+public class Student {
+
+    private String name;
+    private int score;
+
+    public Student() {
+
+    }
+
+    public Student(String name, int score) {
+        this.name = name;
+        this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Student(name: %s, score: %d)", name, score);
+    }
+
+    public static void main(String[] args) {
+        Array<Student> array = new Array<>();
+        array.add(new Student("Alice", 100));
+        array.add(new Student("Bob", 77));
+        array.add(new Student("Charlie", 88));
+        System.out.println(array);
+    }
+}

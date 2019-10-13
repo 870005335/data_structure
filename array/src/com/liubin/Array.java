@@ -1,14 +1,17 @@
 package com.liubin;
 
-public class Array {
+import java.util.ArrayList;
+import java.util.List;
 
-    private int[] data;
+public class Array<E> {
+
+    private E[] data;
     private int size;
 
     private static final int ZERO = 0;
 
-    private Array(int capacity) {
-        data = new int[capacity];
+    public Array(int capacity) {
+        data = (E[]) new Object[capacity];
         size = 0;
     }
 
@@ -20,7 +23,7 @@ public class Array {
         return this.size;
     }
 
-    int[] getData() {
+    E[] getData() {
         return data;
     }
 
@@ -32,49 +35,110 @@ public class Array {
         return this.size == 0;
     }
 
-    void add(int e) {
+    void add(E e) {
         add(this.size, e);
     }
 
-    void addFirst(int e) {
+    void addFirst(E e) {
         add(ZERO, e);
     }
 
-    void add(int index, int e) {
-        if (this.size == data.length) {
-            throw new IllegalArgumentException("add failed,Array is full");
-        }
+    void add(int index, E e) {
         if (index < 0 || index > this.size) {
-            throw new IllegalArgumentException("index is not required");
+            throw new IllegalArgumentException("index is illegal");
+        }
+        if (this.size == data.length) {
+            resize(2 * data.length);
         }
         System.arraycopy(data, index, data, index + 1, this.size - index);
         this.data[index] = e;
         this.size++;
     }
 
-    int get(int index) {
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
+
+    E get(int index) {
         if (index > this.size) {
             throw new ArrayIndexOutOfBoundsException(index);
         }
         return this.data[index];
     }
 
-    boolean contains(int e) {
+    boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e){
+            if (data[i].equals(e)){
                 return true;
             }
         }
         return false;
     }
 
-    int getIndex(int e) {
+    int getIndex(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == e){
+            if (data[i].equals(e)){
                 return i;
             }
         }
         return -1;
+    }
+
+    List<Integer> getAllIndex(E e) {
+        List<Integer> indexList = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(e)) {
+                indexList.add(i);
+            }
+        }
+        return indexList;
+    }
+
+    public E remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("index is illegal");
+        }
+        E rev = data[index];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+        data[--size] = null; //loitering objects
+        if (size == data.length/2) {
+            resize(data.length/2);
+        }
+        return rev;
+    }
+
+    public E removeFirst() {
+        return this.remove(ZERO);
+    }
+
+    public E removeLast() {
+        return this.remove(size - 1);
+    }
+
+    public void removeElement(E e) {
+        int index = getIndex(e);
+        if (index != -1) {
+            this.remove(index);
+        }
+    }
+
+    public void removeAllElement(E e) {
+        List<Integer> indexList = this.getAllIndex(e);
+        if (!indexList.isEmpty()) {
+            for (Integer index : indexList) {
+                if (index != size) {
+                    remove(index);
+                } else {
+                    size--;
+                }
+            }
+        }
     }
 
     @Override
