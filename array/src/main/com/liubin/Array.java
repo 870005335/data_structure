@@ -1,4 +1,4 @@
-package com.liubin;
+package main.com.liubin;
 
 import java.util.ArrayList;
 import java.util.List;

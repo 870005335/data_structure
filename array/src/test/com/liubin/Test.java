@@ -1,9 +1,8 @@
-package com.liubin;
+package test.com.liubin;
 
-import java.util.ArrayList;
-import java.util.List;
+import main.com.liubin.Array;
 
-public class Main {
+public class Test {
     public static void main(String[] args) {
         Array<Integer> arr = new Array<>(20);
 

@@ -1,4 +1,4 @@
-package com.liubin;
+package main.com.liubin;
 
 public class Student {
 

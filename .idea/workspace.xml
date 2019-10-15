@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6a86b4d-41d2-4cfc-9897-47435057926c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/array/src/com/liubin/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="c6a86b4d-41d2-4cfc-9897-47435057926c" name="Default Changelist" comment="数据结构">
+      <change afterPath="$PROJECT_DIR$/array/src/main/com/liubin/ArrayStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/array/src/main/com/liubin/Stack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/com/liubin/Array.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/array/src/com/liubin/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/array/src/com/liubin/Array.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/array/src/com/liubin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/array/src/com/liubin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/src/com/liubin/Array.java" beforeDir="false" afterPath="$PROJECT_DIR$/array/src/main/com/liubin/Array.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/src/com/liubin/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/array/src/main/com/liubin/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/array/src/com/liubin/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/array/src/main/com/liubin/Student.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -54,19 +56,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Student">
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.liubin.Main" />
-      <module name="array" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.liubin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.liubin.Main" />
       <module name="datas_structure" />
@@ -77,12 +66,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Student" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.liubin.Student" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.liubin.Main" />
       <module name="array" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.liubin.*" />
+          <option name="PATTERN" value="main.liubin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Student" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.liubin.Student" />
+      <module name="array" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.liubin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,6 +117,7 @@
       <workItem from="1569984942487" duration="198000" />
       <workItem from="1570623135634" duration="6937000" />
       <workItem from="1570973688674" duration="6942000" />
+      <workItem from="1571120416718" duration="2941000" />
     </task>
     <task id="LOCAL-00001" summary="数据结构">
       <created>1570623703801</created>
@@ -123,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570623703801</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="数据结构">
+      <created>1571125175610</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1571125175610</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,8 +160,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/array/src/com/liubin/Array.java</url>
-          <line>131</line>
+          <url>file://$PROJECT_DIR$/array/src/main/com/liubin/Array.java</url>
+          <line>129</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
