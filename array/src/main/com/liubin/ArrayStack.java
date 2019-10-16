@@ -45,4 +45,17 @@ public class ArrayStack<E> implements Stack<E> {
 	public int getCapacity() {
 		return array.getCapacity();
 	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("Stack: [");
+		for (int i = 0; i < array.getSize(); i++) {
+			sb.append(array.get(i));
+			if (i != array.getSize() -1) {
+				sb.append(",");
+			}
+		}
+		sb.append("] top");
+		return sb.toString();
+	}
 }

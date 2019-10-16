@@ -1,23 +1,21 @@
 package test.com.liubin;
 
-import main.com.liubin.Array;
+
+import main.com.liubin.ArrayQueue;
+import main.com.liubin.Queue;
+
+
 
 public class Test {
     public static void main(String[] args) {
-        Array<Integer> arr = new Array<>(20);
-
-//        for (int i = 0; i < 10; i++) {
-//            arr.add(i);
-//        }
-//
-//        arr.add(2);
-//        arr.add(5);
-//        List<Integer> allIndex = arr.getAllIndex(2);
-//        System.out.println(allIndex.size());
-//        System.out.println(arr.getSize());
-//        arr.removeElement(11);
-//        System.out.println(arr.getSize());
-//        arr.removeAllElement(5);
-//        System.out.println(arr.getSize());
+        Queue<Integer> queue = new ArrayQueue<>();
+        for (int i = 0; i < 5; i++) {
+            queue.enQueue(i);
+            System.out.println(queue);
+        }
+        queue.deQueue();
+        System.out.println(queue);
     }
+
+
 }
