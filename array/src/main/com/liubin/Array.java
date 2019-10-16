@@ -68,6 +68,14 @@ public class Array<E> {
         return this.data[index];
     }
 
+    E getFirst() {
+    	return this.get(ZERO);
+    }
+
+    E getLast() {
+    	return this.get(this.size - 1);
+    }
+
     boolean contains(E e) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(e)){
