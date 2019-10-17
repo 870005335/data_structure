@@ -50,6 +50,7 @@ public class LoopQueue<E> implements Queue<E> {
         }
         E ret = data[front];
         data[front] = null;
+        front = (front + 1) % data.length;
         size--;
         if (size == getCapacity() / 4 && getCapacity() / 2 != 0) {
             resize(getCapacity() / 2);
