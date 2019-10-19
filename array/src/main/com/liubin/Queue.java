@@ -13,7 +13,7 @@ public interface Queue<E> {
 
 	E deQueue();
 
-	E getFront();
+	E getHead();
 
 	boolean isEmpty();
 

@@ -28,7 +28,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	}
 
 	@Override
-	public E getFront() {
+	public E getHead() {
 		return array.getFirst();
 	}
 

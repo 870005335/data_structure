@@ -3,6 +3,7 @@ package main.com.liubin;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Array<E> {
 
     private E[] data;

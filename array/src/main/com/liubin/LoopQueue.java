@@ -4,16 +4,17 @@ public class LoopQueue<E> implements Queue<E> {
 
     private E[] data;
 
-    private int front;
+    private int head;
     private int tail;
     private int size;
 
     public LoopQueue(int capacity) {
         data = (E[]) new Object[capacity + 1];
-        front = 0;
+        head = 0;
         tail = 0;
         size = 0;
     }
+
 
     public LoopQueue() {
         this(10);
@@ -23,9 +24,10 @@ public class LoopQueue<E> implements Queue<E> {
         return data.length - 1;
     }
 
+
     @Override
     public void enQueue(E e) {
-        if ((tail + 1) % data.length == front) {
+        if ((tail + 1) % data.length == head) {
             resize(getCapacity() *2);
         }
         data[tail] = e;
@@ -36,10 +38,10 @@ public class LoopQueue<E> implements Queue<E> {
     private void resize(int newCapacity) {
         E[] newData = (E[]) new Object[newCapacity + 1];
         for (int i = 0; i < size; i++) {
-            newData[i] = data[(i + front) % data.length];
+            newData[i] = data[(i + head) % data.length];
         }
         data = newData;
-        front = 0;
+        head = 0;
         tail = size;
     }
 
@@ -48,9 +50,9 @@ public class LoopQueue<E> implements Queue<E> {
         if (isEmpty()) {
             throw new IllegalArgumentException("Queue is empty, can not deQueue");
         }
-        E ret = data[front];
-        data[front] = null;
-        front = (front + 1) % data.length;
+        E ret = data[head];
+        data[head] = null;
+        head = (head + 1) % data.length;
         size--;
         if (size == getCapacity() / 4 && getCapacity() / 2 != 0) {
             resize(getCapacity() / 2);
@@ -59,16 +61,16 @@ public class LoopQueue<E> implements Queue<E> {
     }
 
     @Override
-    public E getFront() {
+    public E getHead() {
         if (isEmpty()) {
             throw new IllegalArgumentException("Queue is empty");
         }
-        return data[front];
+        return data[head];
     }
 
     @Override
     public boolean isEmpty() {
-        return front == tail;
+        return head == tail;
     }
 
     @Override
@@ -80,8 +82,8 @@ public class LoopQueue<E> implements Queue<E> {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append(String.format("Queue: size = %d, capacity = %d\n", size, getCapacity()));
-        sb.append("front [");
-        for (int i = front; i != tail; i = (i + 1) % data.length) {
+        sb.append("head [");
+        for (int i = head; i != tail; i = (i + 1) % data.length) {
             sb.append(data[i]);
             if ((i + 1) % data.length != tail) {
                 sb.append(", ");
