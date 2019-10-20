@@ -1,4 +1,4 @@
-package main.com.liubin;
+package main.com.liubin.queue;
 
 public class LoopQueue<E> implements Queue<E> {
 

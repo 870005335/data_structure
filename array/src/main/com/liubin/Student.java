@@ -1,5 +1,7 @@
 package main.com.liubin;
 
+import main.com.liubin.array.Array;
+
 public class Student {
 
     private String name;

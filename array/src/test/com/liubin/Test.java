@@ -1,23 +1,15 @@
 package test.com.liubin;
 
 
-import main.com.liubin.ArrayQueue;
-import main.com.liubin.LoopQueue;
-import main.com.liubin.Queue;
-
-
+import main.com.liubin.LinkedList.LinkedList;
 
 public class Test {
     public static void main(String[] args) {
-        Queue<Integer> queue = new LoopQueue<>();
-        for (int i = 0; i < 10; i++) {
-            queue.enQueue(i);
-        }
-        System.out.println(queue);
-        queue.deQueue();
-        queue.enQueue(10);
-        queue.enQueue(11);
-        System.out.println(queue);
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        linkedList.add(1);
+        linkedList.add(2);
+        System.out.println(linkedList.getSize());
+        System.out.println(linkedList.get(2));
     }
 
 

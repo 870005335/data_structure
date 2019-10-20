@@ -1,4 +1,7 @@
-package main.com.liubin;
+package main.com.liubin.queue;
+
+import main.com.liubin.array.Array;
+
 /**
 * Title:ArrayQueue.java
 * @discription: 

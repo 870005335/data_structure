@@ -1,4 +1,4 @@
-package main.com.liubin;
+package main.com.liubin.array;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +16,11 @@ public class Array<E> {
         size = 0;
     }
 
-    Array() {
+    public Array() {
         this(10);
     }
 
-    int getSize() {
+    public int getSize() {
         return this.size;
     }
 
@@ -36,7 +36,7 @@ public class Array<E> {
         return this.size == 0;
     }
 
-    void add(E e) {
+    public void add(E e) {
         add(this.size, e);
     }
 
@@ -62,18 +62,18 @@ public class Array<E> {
         data = newData;
     }
 
-    E get(int index) {
+    public E get(int index) {
         if (index > this.size) {
             throw new ArrayIndexOutOfBoundsException(index);
         }
         return this.data[index];
     }
 
-    E getFirst() {
+    public E getFirst() {
     	return this.get(ZERO);
     }
 
-    E getLast() {
+    public E getLast() {
     	return this.get(this.size - 1);
     }
 

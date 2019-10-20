@@ -1,8 +1,8 @@
 package test.com.liubin;
 
-import main.com.liubin.ArrayQueue;
-import main.com.liubin.LoopQueue;
-import main.com.liubin.Queue;
+import main.com.liubin.queue.ArrayQueue;
+import main.com.liubin.queue.LoopQueue;
+import main.com.liubin.queue.Queue;
 
 import java.util.Random;
 

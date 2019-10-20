@@ -1,4 +1,7 @@
-package main.com.liubin;
+package main.com.liubin.stack;
+
+import main.com.liubin.array.Array;
+
 /**
 * Title:ArrayStack.java
 * @discription: 

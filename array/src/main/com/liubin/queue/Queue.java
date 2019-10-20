@@ -1,4 +1,4 @@
-package main.com.liubin;
+package main.com.liubin.queue;
 
 /**
  * Title:Queue.java
