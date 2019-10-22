@@ -74,7 +74,7 @@ public class SinglyLinkedList<E> {
         StringBuilder sb = new StringBuilder();
         Node<E> node = this.dummyHead;
         while (node.next != null) {
-            sb.append(node + "->");
+            sb.append(node).append("->");
             node = node.next;
         }
         sb.append("NULL");

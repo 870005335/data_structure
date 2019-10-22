@@ -130,6 +130,19 @@ public class LinkedList<E> {
         }
     }
 
+    @Override
+    public String toString() {
+        Node<E> first = this.first;
+        final StringBuilder sb = new StringBuilder();
+        while (first.next != null) {
+            sb.append(first).append("⇄");
+            first = first.next;
+        }
+        sb.append(last).append("⇄");
+        sb.append("NULL");
+        return sb.toString();
+    }
+
     private static class Node<E> {
         E data;
         Node<E> next;
@@ -141,6 +154,10 @@ public class LinkedList<E> {
             this.prev = prev;
         }
 
+        @Override
+        public String toString() {
+           return data.toString();
+        }
     }
 
 }
