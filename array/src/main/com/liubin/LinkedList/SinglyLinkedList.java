@@ -9,6 +9,8 @@ package main.com.liubin.LinkedList;
  **/
 public class SinglyLinkedList<E> {
 
+	private final int ZERO = 0;
+
     private Node<E> dummyHead;
     private int size;
 
@@ -48,15 +50,14 @@ public class SinglyLinkedList<E> {
     }
 
     public void set(int index, E e) {
-        if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("index is illegal");
-        }
+        checkIndex(index);
         Node<E> node = this.dummyHead;
         for (int i = 0; i < index; i++) {
             node = node.next;
         }
         node.data = e;
     }
+
 
     public boolean contains(E e) {
         Node<E> dummyHead = this.dummyHead;
@@ -69,17 +70,63 @@ public class SinglyLinkedList<E> {
         return false;
     }
 
+    public E get(int index) {
+        checkIndex(index);
+        Node<E> prev = this.dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        return prev.next.data;
+    }
+
+    public E getFirst() {
+    	return get(ZERO);
+    }
+
+    public E getLast() {
+    	return get(size - 1);
+    }
+
+    public E remove(int index) {
+    	checkIndex(index);
+	    Node<E> prev = this.dummyHead;
+	    for (int i = 0; i < index; i++) {
+		    prev = prev.next;
+	    }
+	    Node<E> del = prev.next;
+	    prev.next = del.next;
+	    del.next = null;
+	    size--;
+	    return del.data;
+    }
+
+    public E removeFirst() {
+    	return remove(ZERO);
+    }
+
+    public E removeLast() {
+    	return remove(size - 1);
+    }
+
+    private void checkIndex(int index) {
+	    if (index < 0 || index >= size) {
+		    throw new IllegalArgumentException("index is illegal");
+	    }
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Node<E> node = this.dummyHead;
-        while (node.next != null) {
-            sb.append(node).append("->");
-            node = node.next;
+        sb.append("[");
+        for (int i = 0; i < size - 1; i++) {
+            sb.append(get(i)).append("->");
         }
-        sb.append("NULL");
+        sb.append(get(size - 1)).append("]");
         return sb.toString();
     }
+
+
 
     private static class Node<E> {
         private E data;

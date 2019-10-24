@@ -133,13 +133,13 @@ public class LinkedList<E> {
     @Override
     public String toString() {
         Node<E> first = this.first;
-        final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder("[");
         while (first.next != null) {
             sb.append(first).append("⇄");
             first = first.next;
         }
         sb.append(last).append("⇄");
-        sb.append("NULL");
+        sb.append("]");
         return sb.toString();
     }
 
