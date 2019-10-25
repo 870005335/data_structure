@@ -83,7 +83,7 @@ public class LinkedList<E> {
         size++;
     }
 
-    public void add(E e) {
+    public void addLast(E e) {
         linkLast(e);
     }
 
@@ -104,6 +104,46 @@ public class LinkedList<E> {
         }
         Node<E> node = node(index);
         return node.data;
+    }
+
+    public E getFirst() {
+    	return get(0);
+    }
+
+    public E getLast() {
+    	return get(size - 1);
+    }
+
+
+    public E remove(int index) {
+	    Node<E> delNode = node(index);
+	    E data = delNode.data;
+	    Node<E> prev = delNode.prev;
+	    Node<E> next = delNode.next;
+	    if (null == prev) {
+	    	first = next;
+	    } else {
+	    	prev.next = next;
+	    	delNode.prev = null;
+	    }
+
+	    if (null == next) {
+	    	last = prev;
+	    } else {
+	    	next.prev = prev;
+	    	delNode.next = null;
+	    }
+	    delNode.data = null;
+	    size --;
+	    return data;
+    }
+
+    public E removeFirst() {
+    	return remove(0);
+    }
+
+    public E removeLast() {
+    	return remove(size - 1);
     }
 
     /**
@@ -138,7 +178,7 @@ public class LinkedList<E> {
             sb.append(first).append("⇄");
             first = first.next;
         }
-        sb.append(last).append("⇄");
+        sb.append(last);
         sb.append("]");
         return sb.toString();
     }
@@ -148,7 +188,7 @@ public class LinkedList<E> {
         Node<E> next;
         Node<E> prev;
 
-        public Node(E data, Node<E> next, Node<E> prev) {
+        Node(E data, Node<E> next, Node<E> prev) {
             this.data = data;
             this.next = next;
             this.prev = prev;

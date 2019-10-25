@@ -1,4 +1,7 @@
 package main.com.liubin.queue;
+
+import main.com.liubin.LinkedList.SinglyLinkedList;
+
 /**
 * Title:SingleLinkQueue.java
 * @discription: 
@@ -6,28 +9,42 @@ package main.com.liubin.queue;
 * @created 2019-10-24 16:33
 */
 public class SingleLinkQueue<E> implements Queue<E> {
+
+	private SinglyLinkedList<E> singlyLinkedList;
+
+	public SingleLinkQueue() {
+		singlyLinkedList = new SinglyLinkedList<>();
+	}
+
 	@Override
 	public void enQueue(E e) {
-
+		singlyLinkedList.addFirst(e);
 	}
 
 	@Override
 	public E deQueue() {
-		return null;
+		return singlyLinkedList.removeLast();
 	}
 
 	@Override
 	public E getHead() {
-		return null;
+		return singlyLinkedList.getFirst();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return false;
+		return singlyLinkedList.isEmpty();
 	}
 
 	@Override
 	public int getSize() {
-		return 0;
+		return singlyLinkedList.getSize();
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("Queue: head ");
+		sb.append(singlyLinkedList).append(" tail");
+		return sb.toString();
 	}
 }
