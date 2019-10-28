@@ -180,7 +180,6 @@ public class LinkedList<E> {
         }
         sb.append(last);
         sb.append("]");
-        sb.append("null");
         return sb.toString();
     }
 
@@ -189,7 +188,7 @@ public class LinkedList<E> {
         Node<E> next;
         Node<E> prev;
 
-        public Node(E data, Node<E> next, Node<E> prev) {
+        Node(E data, Node<E> next, Node<E> prev) {
             this.data = data;
             this.next = next;
             this.prev = prev;
