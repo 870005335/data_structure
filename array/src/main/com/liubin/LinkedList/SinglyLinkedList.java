@@ -61,7 +61,7 @@ public class SinglyLinkedList<E> {
 
     public boolean contains(E e) {
         Node<E> dummyHead = this.dummyHead;
-        while (dummyHead.next != null) {
+        while (dummyHead != null) {
             if (dummyHead.next.data.equals(e)) {
                 return true;
             }
