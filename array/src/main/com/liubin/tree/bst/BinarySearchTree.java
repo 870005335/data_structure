@@ -1,4 +1,7 @@
 package main.com.liubin.tree.bst;
+
+import org.w3c.dom.Node;
+
 /**
 * Title:BinarySearchTree.java
 * @discription: 二分搜索树
@@ -24,6 +27,27 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
 	public boolean isEmpty() {
 		return size == 0;
+	}
+
+	public boolean contains(E e) {
+		Node node = this.root;
+		return contains(node, e);
+	}
+
+	private boolean contains(Node node, E e) {
+		if (node == null) {
+			return false;
+		}
+		if (node.e.equals(e)) {
+			return true;
+		}
+		if (node.e.compareTo(e) > 0) {
+			return contains(node.left, e);
+		}
+		if (node.e.compareTo(e) < 0) {
+			return contains(node.right, e);
+		}
+		return false;
 	}
 
 	public void add(E e) {

@@ -6,12 +6,11 @@ import main.com.liubin.tree.bst.BinarySearchTree;
 public class Test {
     public static void main(String[] args) {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        tree.add(1);
+        for (int i = 0; i < 20; i++) {
+            tree.add(i);
+        }
         System.out.println(tree.size());
-        tree.add(2);
-        tree.add(2);
-        System.out.println(tree.size());
-
+        System.out.println(tree.contains(15));
     }
 
 
