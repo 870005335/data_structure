@@ -1,13 +1,17 @@
 package test.com.liubin;
 
 
+import main.com.liubin.tree.bst.BinarySearchTree;
+
 public class Test {
     public static void main(String[] args) {
-        int[] arr = {1,3,5,9,4,8,6};
-        ListNode head = new ListNode(arr);
-        System.out.println(head);
-        ListNode node = removeElements(head, 1);
-        System.out.println(node);
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        tree.add(1);
+        System.out.println(tree.size());
+        tree.add(2);
+        tree.add(2);
+        System.out.println(tree.size());
+
     }
 
 
@@ -27,6 +31,8 @@ public class Test {
             val = x;
         }
 
+
+
         public ListNode(int[] arr) {
             this.val = arr[0];
             ListNode cur = this;
@@ -36,6 +42,23 @@ public class Test {
             }
         }
 
+        public static boolean add(ListNode head, int e) {
+            if (head == null) {
+                return  false;
+            }
+            head.next = new ListNode(e);
+            return  add(head.next, e);
+        }
+
+        public static boolean contains(ListNode head, int e) {
+            if (head == null) {
+                return  false;
+            }
+            if (head.val == e) {
+                return true;
+            }
+            return contains(head.next, e);
+        }
 
         @Override
         public String toString() {
