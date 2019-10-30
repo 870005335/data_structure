@@ -3,14 +3,22 @@ package test.com.liubin;
 
 import main.com.liubin.tree.bst.BinarySearchTree;
 
+import java.util.Random;
+
 public class Test {
     public static void main(String[] args) {
         BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        for (int i = 0; i < 20; i++) {
-            tree.add(i);
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            tree.add(random.nextInt(100));
         }
-        System.out.println(tree.size());
-        System.out.println(tree.contains(15));
+        tree.preOrderTraversal();
+        System.out.println("========================================================");
+        tree.inOrderTraversal();
+        System.out.println("========================================================");
+        tree.postOrderTraversal();
+        System.out.println("========================================================");
+        tree.preOrderTraversalNR();
     }
 
 

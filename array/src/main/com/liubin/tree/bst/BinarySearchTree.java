@@ -1,6 +1,7 @@
 package main.com.liubin.tree.bst;
 
-import org.w3c.dom.Node;
+
+import java.util.Stack;
 
 /**
 * Title:BinarySearchTree.java
@@ -66,6 +67,59 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			node.right = add(node.right, e);
 		}
 		return node;
+	}
+
+	public void preOrderTraversal() {
+		preOrderTraversal(root);
+	}
+
+	private void preOrderTraversal(Node node) {
+		if (node == null) {
+			return;
+		}
+		System.out.println(node.e);
+		preOrderTraversal(node.left);
+		preOrderTraversal(node.right);
+	}
+
+	public void preOrderTraversalNR() {
+		Stack<Node> stack = new Stack<>();
+		stack.push(root);
+		while (!stack.isEmpty()) {
+			Node cur = stack.pop();
+			if (null != cur.right) {
+				stack.push(cur.right);
+			}
+			if (null != cur.left) {
+				stack.push(cur.left);
+			}
+		}
+	}
+
+	public void inOrderTraversal() {
+		inOrderTraversal(root);
+	}
+
+	private void inOrderTraversal(Node node) {
+		if (null == node) {
+			return;
+		}
+		inOrderTraversal(node.left);
+		System.out.println(node.e);
+		inOrderTraversal(node.right);
+	}
+
+	public void postOrderTraversal() {
+		preOrderTraversal(root);
+	}
+
+	private void postOrderTraversal(Node node) {
+		if (null == node) {
+			return;
+		}
+		postOrderTraversal(node.left);
+		postOrderTraversal(node.right);
+		System.out.println(node.e);
 	}
 
 	private class Node {
