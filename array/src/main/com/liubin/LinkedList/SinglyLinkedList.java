@@ -19,6 +19,16 @@ public class SinglyLinkedList<E> {
         size = 0;
     }
 
+    public SinglyLinkedList(E[] arr) {
+        dummyHead = new Node<>(null, null);
+        Node<E> cur = this.dummyHead;
+        for (E e : arr) {
+            cur.next = new Node<>(e, null);
+            cur = cur.next;
+            size++;
+        }
+    }
+
     public int getSize() {
         return size;
     }

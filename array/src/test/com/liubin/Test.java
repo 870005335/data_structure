@@ -1,24 +1,23 @@
 package test.com.liubin;
 
 
+import main.com.liubin.LinkedList.SinglyLinkedList;
 import main.com.liubin.tree.bst.BinarySearchTree;
 
 import java.util.Random;
 
 public class Test {
     public static void main(String[] args) {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            tree.add(random.nextInt(100));
-        }
-        tree.preOrderTraversal();
-        System.out.println("========================================================");
-        tree.inOrderTraversal();
-        System.out.println("========================================================");
-        tree.postOrderTraversal();
-        System.out.println("========================================================");
-        tree.preOrderTraversalNR();
+	    Integer[] arr = new Integer[]{12,5,4,8,9,18,25,69,47,24,36};
+	    BinarySearchTree<Integer> bst = new BinarySearchTree<>(arr);
+	    bst.preOrderTraversalNr();
+	    bst.preOrderTraversal();
+	    System.out.println("\n=================================================================");
+	    bst.inOrderTraversalNr();
+	    bst.inOrderTraversal();
+	    System.out.println("\n=================================================================");
+	    bst.postOrderTraversalNr();
+	    bst.postOrderTraversal();
     }
 
 

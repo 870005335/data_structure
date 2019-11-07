@@ -22,6 +22,12 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		size = 0;
 	}
 
+	public BinarySearchTree(E[] arr) {
+		for (E e : arr) {
+			add(e);
+		}
+	}
+
 	public int size() {
 		return size;
 	}
@@ -77,23 +83,24 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		if (node == null) {
 			return;
 		}
-		System.out.println(node.e);
+		System.out.print(node.e + " ");
 		preOrderTraversal(node.left);
 		preOrderTraversal(node.right);
 	}
 
-	public void preOrderTraversalNR() {
+	public void preOrderTraversalNr() {
+		Node node = this.root;
 		Stack<Node> stack = new Stack<>();
-		stack.push(root);
-		while (!stack.isEmpty()) {
-			Node cur = stack.pop();
-			if (null != cur.right) {
-				stack.push(cur.right);
-			}
-			if (null != cur.left) {
-				stack.push(cur.left);
+		while (node != null || !stack.isEmpty()) {
+			if (node != null) {
+				System.out.print(node.e + " ");
+				stack.push(node);
+				node = node.left;
+			} else {
+				node = stack.pop().right;
 			}
 		}
+		System.out.println();
 	}
 
 	public void inOrderTraversal() {
@@ -105,12 +112,28 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			return;
 		}
 		inOrderTraversal(node.left);
-		System.out.println(node.e);
+		System.out.print(node.e + " ");
 		inOrderTraversal(node.right);
 	}
 
+	public void inOrderTraversalNr() {
+		Node node = this.root;
+		Stack<Node> stack = new Stack<>();
+		while (node != null || !stack.isEmpty()) {
+			if (node != null) {
+				stack.push(node);
+				node = node.left;
+			} else {
+				node = stack.pop();
+				System.out.print(node.e + " ");
+				node = node.right;
+			}
+		}
+		System.out.println();
+	}
+
 	public void postOrderTraversal() {
-		preOrderTraversal(root);
+		postOrderTraversal(root);
 	}
 
 	private void postOrderTraversal(Node node) {
@@ -119,7 +142,28 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		}
 		postOrderTraversal(node.left);
 		postOrderTraversal(node.right);
-		System.out.println(node.e);
+		System.out.print(node.e + " ");
+	}
+
+	public void postOrderTraversalNr() {
+		Stack<Node> inStack = new Stack<>();
+		Stack<Node> outStack = new Stack<>();
+		inStack.push(root);
+		while (!inStack.isEmpty()) {
+			Node node = inStack.pop();
+			outStack.push(node);
+			if (node.left != null) {
+				inStack.push(node.left);
+			}
+			if (node.right != null) {
+				inStack.push(node.right);
+			}
+		}
+		while (!outStack.isEmpty()) {
+			Node node = outStack.pop();
+			System.out.print(node.e + " ");
+		}
+		System.out.println();
 	}
 
 	private class Node {
