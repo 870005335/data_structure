@@ -1,6 +1,8 @@
 package main.com.liubin.tree.bst;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -162,6 +164,22 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		while (!outStack.isEmpty()) {
 			Node node = outStack.pop();
 			System.out.print(node.e + " ");
+		}
+		System.out.println();
+	}
+
+	public void levelTraversal() {
+		Queue<Node> queue = new LinkedList<>();
+		queue.add(root);
+		while (!queue.isEmpty()) {
+			Node node = queue.remove();
+			System.out.print(node.e + " ");
+			if (node.left != null) {
+				queue.add(node.left);
+			}
+			if (node.right != null) {
+				queue.add(node.right);
+			}
 		}
 		System.out.println();
 	}

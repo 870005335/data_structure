@@ -11,19 +11,19 @@ public class SinglyLinkedList<E> {
 
 	private final int ZERO = 0;
 
-    private Node<E> dummyHead;
+    private Node dummyHead;
     private int size;
 
     public SinglyLinkedList() {
-        dummyHead = new Node<>(null, null);
+        dummyHead = new Node(null, null);
         size = 0;
     }
 
     public SinglyLinkedList(E[] arr) {
-        dummyHead = new Node<>(null, null);
-        Node<E> cur = this.dummyHead;
+        dummyHead = new Node(null, null);
+        Node cur = this.dummyHead;
         for (E e : arr) {
-            cur.next = new Node<>(e, null);
+            cur.next = new Node(e, null);
             cur = cur.next;
             size++;
         }
@@ -38,8 +38,8 @@ public class SinglyLinkedList<E> {
     }
 
     public void addFirst(E e) {
-        Node<E> dummyHead = this.dummyHead;
-        dummyHead.next = new Node<>(e, dummyHead.next);
+        Node dummyHead = this.dummyHead;
+        dummyHead.next = new Node(e, dummyHead.next);
         size++;
     }
 
@@ -47,12 +47,26 @@ public class SinglyLinkedList<E> {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("index is illegal");
         }
-        Node<E> prev = this.dummyHead;
+        Node prev = this.dummyHead;
         for (int i = 0; i < index; i++) {
             prev = prev.next;
         }
-        prev.next = new Node<>(e, prev.next);
+        prev.next = new Node(e, prev.next);
         size++;
+    }
+
+    public void addByRecursion(E e) {
+	    Node node = dummyHead;
+	    addByRecursion(node, e);
+    }
+
+    private void  addByRecursion(Node node, E e) {
+    	if (node.next == null) {
+		    node.next = new Node(e, null);
+    		size++;
+    		return;
+	    }
+    	addByRecursion(node.next, e);
     }
 
     public void addLast(E e) {
@@ -61,7 +75,7 @@ public class SinglyLinkedList<E> {
 
     public void set(int index, E e) {
         checkIndex(index);
-        Node<E> node = this.dummyHead;
+        Node node = this.dummyHead;
         for (int i = 0; i < index; i++) {
             node = node.next;
         }
@@ -70,7 +84,7 @@ public class SinglyLinkedList<E> {
 
 
     public boolean contains(E e) {
-        Node<E> dummyHead = this.dummyHead;
+        Node dummyHead = this.dummyHead;
         while (dummyHead != null) {
             if (dummyHead.next.data.equals(e)) {
                 return true;
@@ -80,9 +94,24 @@ public class SinglyLinkedList<E> {
         return false;
     }
 
+    public boolean containsByRecursion(E e) {
+	    Node node = dummyHead.next;
+		return containsByRecursion(node, e);
+    }
+
+    private boolean containsByRecursion(Node node, E e) {
+    	if (node == null) {
+    		return false;
+	    }
+    	if (node.data == e) {
+    		return true;
+	    }
+    	return containsByRecursion(node.next, e);
+    }
+
     public E get(int index) {
         checkIndex(index);
-        Node<E> prev = this.dummyHead;
+        Node prev = this.dummyHead;
         for (int i = 0; i < index; i++) {
             prev = prev.next;
         }
@@ -99,11 +128,11 @@ public class SinglyLinkedList<E> {
 
     public E remove(int index) {
     	checkIndex(index);
-	    Node<E> prev = this.dummyHead;
+	    Node prev = this.dummyHead;
 	    for (int i = 0; i < index; i++) {
 		    prev = prev.next;
 	    }
-	    Node<E> del = prev.next;
+	    Node del = prev.next;
 	    prev.next = del.next;
 	    del.next = null;
 	    size--;
@@ -127,7 +156,6 @@ public class SinglyLinkedList<E> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Node<E> node = this.dummyHead;
         sb.append("[");
         for (int i = 0; i < size - 1; i++) {
             sb.append(get(i)).append("->");
@@ -138,11 +166,11 @@ public class SinglyLinkedList<E> {
 
 
 
-    private static class Node<E> {
+    private class Node {
         private E data;
-        private Node<E> next;
+        private Node next;
 
-        public Node(E e, Node<E> next) {
+        public Node(E e, Node next) {
             this.data = e;
             this.next = next;
         }
@@ -152,4 +180,13 @@ public class SinglyLinkedList<E> {
             return data.toString();
         }
     }
+
+
+	public static void main(String[] args) {
+		SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
+		singlyLinkedList.addByRecursion(15);
+		singlyLinkedList.addByRecursion(26);
+		System.out.println(singlyLinkedList);
+		System.out.println(singlyLinkedList.containsByRecursion(30));
+	}
 }

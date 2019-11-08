@@ -18,6 +18,8 @@ public class Test {
 	    System.out.println("\n=================================================================");
 	    bst.postOrderTraversalNr();
 	    bst.postOrderTraversal();
+        System.out.println("\n=================================================================");
+        bst.levelTraversal();
     }
 
 
