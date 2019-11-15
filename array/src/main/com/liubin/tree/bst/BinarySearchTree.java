@@ -1,6 +1,8 @@
 package main.com.liubin.tree.bst;
 
 
+import org.w3c.dom.Node;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -38,6 +40,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return size == 0;
 	}
 
+	/**
+	 * @MethodName: contains
+	 * @Description: 二分搜索树：是否包含元素e
+	 * @param e
+	 * @Return: boolean
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:23
+	**/
 	public boolean contains(E e) {
 		Node node = this.root;
 		return contains(node, e);
@@ -59,6 +69,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return false;
 	}
 
+	/**
+	 * @MethodName: add
+	 * @Description: 二分搜索树：添加节点
+	 * @param e
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:24
+	**/
 	public void add(E e) {
 		root = add(root, e);
 	}
@@ -77,6 +95,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return node;
 	}
 
+	/**
+	 * @MethodName: preOrderTraversal
+	 * @Description: 二分搜索树：前序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:25
+	**/
 	public void preOrderTraversal() {
 		preOrderTraversal(root);
 	}
@@ -90,6 +116,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		preOrderTraversal(node.right);
 	}
 
+	/**
+	 * @MethodName: preOrderTraversalNr
+	 * @Description: 二分搜索树：非递归方式前序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:26
+	**/
 	public void preOrderTraversalNr() {
 		Node node = this.root;
 		Stack<Node> stack = new Stack<>();
@@ -105,6 +139,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		System.out.println();
 	}
 
+	/**
+	 * @MethodName: inOrderTraversal
+	 * @Description: 二分搜索树：中序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:26
+	**/
 	public void inOrderTraversal() {
 		inOrderTraversal(root);
 	}
@@ -118,6 +160,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		inOrderTraversal(node.right);
 	}
 
+	/**
+	 * @MethodName: inOrderTraversalNr
+	 * @Description: 二分搜索树：非递归中序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:27
+	**/
 	public void inOrderTraversalNr() {
 		Node node = this.root;
 		Stack<Node> stack = new Stack<>();
@@ -134,6 +184,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		System.out.println();
 	}
 
+	/**
+	 * @MethodName: postOrderTraversal
+	 * @Description: 二分搜索树：后序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:27
+	**/
 	public void postOrderTraversal() {
 		postOrderTraversal(root);
 	}
@@ -147,6 +205,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		System.out.print(node.e + " ");
 	}
 
+	/**
+	 * @MethodName: postOrderTraversalNr
+	 * @Description: 二分搜索树：非递归后序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:27
+	**/
 	public void postOrderTraversalNr() {
 		Stack<Node> inStack = new Stack<>();
 		Stack<Node> outStack = new Stack<>();
@@ -168,6 +234,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		System.out.println();
 	}
 
+	/**
+	 * @MethodName: levelTraversal
+	 * @Description: 二分搜索树：层序遍历
+	 * @param
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:27
+	**/
 	public void levelTraversal() {
 		Queue<Node> queue = new LinkedList<>();
 		queue.add(root);
@@ -185,6 +259,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	}
 
 
+	/**
+	 * @MethodName: getMin
+	 * @Description: 二分搜索树：最小值
+	 * @param
+	 * @Return: E
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:28
+	**/
 	public E getMin() {
 		if (size == 0) {
 			return null;
@@ -199,6 +281,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return getMin(node.left);
 	}
 
+	/**
+	 * @MethodName: removeMin
+	 * @Description: 二分搜索树：移除最小值节点
+	 * @param
+	 * @Return: E
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:28
+	**/
 	public E removeMin() {
 		E min = getMin();
 		removeMin(root);
@@ -216,6 +306,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return node;
 	}
 
+	/**
+	 * @MethodName: getMax
+	 * @Description: 二分搜索树：最大值
+	 * @param
+	 * @Return: E
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:28
+	**/
 	public E getMax() {
 		if (size == 0) {
 			return null;
@@ -230,6 +328,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return getMax(node.right);
 	}
 
+	/**
+	 * @MethodName: removeMax
+	 * @Description: 二分搜索树：移除最大值
+	 * @param
+	 * @Return: E
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:28
+	**/
 	public E removeMax() {
 		E max = getMax();
 		removeMax(root);
@@ -245,6 +351,54 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		}
 		node.right = removeMax(node.right);
 		return node;
+	}
+
+
+	/**
+	 * @MethodName: remove
+	 * @Description: 二分搜索树：移除任意元素
+	 * @param e
+	 * @Return: void
+	 * @Author: Arthas_liubin@Foxmail.com
+	 * @Date: 2019/11/15 21:29
+	**/
+	public void remove(E e) {
+		root = remove(root, e);
+	}
+
+	private Node remove(Node node, E e) {
+		if (node == null) {
+			return null;
+		}
+		if (e.compareTo(node.e) < 0) {
+			node.left = remove(node.left, e);
+			return node;
+		} else if (e.compareTo(node.e) > 0) {
+			node.right = remove(node.right, e);
+			return node;
+		} else {
+			//当所移除节点的左子树为空，和移除最小值思路一致
+			if (node.left == null) {
+				Node right = node.right;
+				node.right = null;
+				size--;
+				return right;
+			}
+			//当所移除节点的右子树为空，和移除最大值思路一致
+			if (node.right == null) {
+				Node left = node.left;
+				node.left = null;
+				size--;
+				return left;
+			}
+			//当所移除节点的左右子树均不为空时，将右子树最小节点替代该节点并移除右子树的最小值节点
+			Node preSuccessor = getMax(node.left);
+			preSuccessor.left = removeMax(node.left);
+			preSuccessor.right = node.right;
+			node.left = node.right = null;
+			return preSuccessor;
+		}
+
 	}
 
 	private class Node {

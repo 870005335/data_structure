@@ -10,7 +10,9 @@ public class Test {
     public static void main(String[] args) {
 	    Integer[] arr = new Integer[]{12,5,4,8,9,18,25,69,47,24,36};
 	    BinarySearchTree<Integer> bst = new BinarySearchTree<>(arr);
-	    System.out.println(bst.getMin());
+	    bst.inOrderTraversalNr();
+	    bst.remove(12);
+	    bst.inOrderTraversal();
     }
 
 
