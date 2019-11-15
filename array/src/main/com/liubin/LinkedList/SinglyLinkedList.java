@@ -126,6 +126,24 @@ public class SinglyLinkedList<E> {
     	return get(size - 1);
     }
 
+
+    public void removeRecursion(E e) {
+    	dummyHead.next = remove(dummyHead.next, e);
+    }
+
+    private Node remove(Node node, E e) {
+		if (node == null) {
+			return null;
+		}
+		node.next = remove(node.next, e);
+		if (node.data.equals(e)) {
+			size--;
+			return node.next;
+		} else {
+			return node;
+		}
+    }
+
     public E remove(int index) {
     	checkIndex(index);
 	    Node prev = this.dummyHead;
@@ -183,10 +201,10 @@ public class SinglyLinkedList<E> {
 
 
 	public static void main(String[] args) {
-		SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>();
-		singlyLinkedList.addByRecursion(15);
-		singlyLinkedList.addByRecursion(26);
+    	Integer[] arr = new Integer[]{1,5,6,8,1,7,6,3};
+		SinglyLinkedList<Integer> singlyLinkedList = new SinglyLinkedList<>(arr);
 		System.out.println(singlyLinkedList);
-		System.out.println(singlyLinkedList.containsByRecursion(30));
+		singlyLinkedList.removeRecursion(6);
+		System.out.println(singlyLinkedList);
 	}
 }

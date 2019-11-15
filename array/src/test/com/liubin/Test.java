@@ -10,16 +10,7 @@ public class Test {
     public static void main(String[] args) {
 	    Integer[] arr = new Integer[]{12,5,4,8,9,18,25,69,47,24,36};
 	    BinarySearchTree<Integer> bst = new BinarySearchTree<>(arr);
-	    bst.preOrderTraversalNr();
-	    bst.preOrderTraversal();
-	    System.out.println("\n=================================================================");
-	    bst.inOrderTraversalNr();
-	    bst.inOrderTraversal();
-	    System.out.println("\n=================================================================");
-	    bst.postOrderTraversalNr();
-	    bst.postOrderTraversal();
-        System.out.println("\n=================================================================");
-        bst.levelTraversal();
+	    System.out.println(bst.getMin());
     }
 
 

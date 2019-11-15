@@ -184,6 +184,69 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		System.out.println();
 	}
 
+
+	public E getMin() {
+		if (size == 0) {
+			return null;
+		}
+		return getMin(root).e;
+	}
+
+	private Node getMin(Node node) {
+		if (node.left == null) {
+			return node;
+		}
+		return getMin(node.left);
+	}
+
+	public E removeMin() {
+		E min = getMin();
+		removeMin(root);
+		return min;
+	}
+
+	private Node removeMin(Node node) {
+		if (node.left == null) {
+			Node right = node.right;
+			node.right = null;
+			size--;
+			return right;
+		}
+		node.left = removeMin(node.left);
+		return node;
+	}
+
+	public E getMax() {
+		if (size == 0) {
+			return null;
+		}
+		return getMax(root).e;
+	}
+
+	private Node getMax(Node node) {
+		if (node.right == null) {
+			return node;
+		}
+		return getMax(node.right);
+	}
+
+	public E removeMax() {
+		E max = getMax();
+		removeMax(root);
+		return max;
+	}
+
+	private Node removeMax(Node node) {
+		if (node.right == null) {
+			Node leftNode = node.left;
+			node.left = null;
+			size--;
+			return leftNode;
+		}
+		node.right = removeMax(node.right);
+		return node;
+	}
+
 	private class Node {
 		public E e;
 		public Node left;
