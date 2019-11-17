@@ -3,9 +3,7 @@ package main.com.liubin.tree.bst;
 
 import org.w3c.dom.Node;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
 * Title:BinarySearchTree.java
@@ -103,17 +101,19 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:25
 	**/
-	public void preOrderTraversal() {
-		preOrderTraversal(root);
+	public List preOrderTraversal() {
+		List<E> result = new ArrayList<>();
+		preOrderTraversal(root, result);
+		return result;
 	}
 
-	private void preOrderTraversal(Node node) {
+	private void preOrderTraversal(Node node, List<E> list) {
 		if (node == null) {
 			return;
 		}
-		System.out.print(node.e + " ");
-		preOrderTraversal(node.left);
-		preOrderTraversal(node.right);
+		list.add(node.e);
+		preOrderTraversal(node.left, list);
+		preOrderTraversal(node.right, list);
 	}
 
 	/**
@@ -124,19 +124,20 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:26
 	**/
-	public void preOrderTraversalNr() {
+	public List<E> preOrderTraversalNr() {
+		List<E> resultList = new ArrayList<>();
 		Node node = this.root;
 		Stack<Node> stack = new Stack<>();
 		while (node != null || !stack.isEmpty()) {
 			if (node != null) {
-				System.out.print(node.e + " ");
+				resultList.add(node.e);
 				stack.push(node);
 				node = node.left;
 			} else {
 				node = stack.pop().right;
 			}
 		}
-		System.out.println();
+		return resultList;
 	}
 
 	/**
@@ -147,17 +148,19 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:26
 	**/
-	public void inOrderTraversal() {
-		inOrderTraversal(root);
+	public List<E> inOrderTraversal() {
+		List<E> resultList = new ArrayList<>();
+		inOrderTraversal(root, resultList);
+		return resultList;
 	}
 
-	private void inOrderTraversal(Node node) {
+	private void inOrderTraversal(Node node, List list) {
 		if (null == node) {
 			return;
 		}
-		inOrderTraversal(node.left);
-		System.out.print(node.e + " ");
-		inOrderTraversal(node.right);
+		inOrderTraversal(node.left, list);
+		list.add(node.e);
+		inOrderTraversal(node.right, list);
 	}
 
 	/**
@@ -168,7 +171,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:27
 	**/
-	public void inOrderTraversalNr() {
+	public List<E> inOrderTraversalNr() {
+		List<E> resultList = new ArrayList<>();
 		Node node = this.root;
 		Stack<Node> stack = new Stack<>();
 		while (node != null || !stack.isEmpty()) {
@@ -177,11 +181,11 @@ public class BinarySearchTree<E extends Comparable<E>> {
 				node = node.left;
 			} else {
 				node = stack.pop();
-				System.out.print(node.e + " ");
+				resultList.add(node.e);
 				node = node.right;
 			}
 		}
-		System.out.println();
+		return resultList;
 	}
 
 	/**
@@ -192,17 +196,19 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:27
 	**/
-	public void postOrderTraversal() {
-		postOrderTraversal(root);
+	public List<E> postOrderTraversal() {
+		List<E> resultList = new ArrayList<>();
+		postOrderTraversal(root, resultList);
+		return resultList;
 	}
 
-	private void postOrderTraversal(Node node) {
+	private void postOrderTraversal(Node node, List<E> list) {
 		if (null == node) {
 			return;
 		}
-		postOrderTraversal(node.left);
-		postOrderTraversal(node.right);
-		System.out.print(node.e + " ");
+		postOrderTraversal(node.left, list);
+		postOrderTraversal(node.right, list);
+		list.add(node.e);
 	}
 
 	/**
@@ -213,7 +219,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:27
 	**/
-	public void postOrderTraversalNr() {
+	public List<E> postOrderTraversalNr() {
+		List<E> resultList = new ArrayList<>();
 		Stack<Node> inStack = new Stack<>();
 		Stack<Node> outStack = new Stack<>();
 		inStack.push(root);
@@ -229,9 +236,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		}
 		while (!outStack.isEmpty()) {
 			Node node = outStack.pop();
-			System.out.print(node.e + " ");
+			resultList.add(node.e);
 		}
-		System.out.println();
+		return resultList;
 	}
 
 	/**

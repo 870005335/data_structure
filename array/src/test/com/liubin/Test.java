@@ -4,20 +4,22 @@ package test.com.liubin;
 import main.com.liubin.LinkedList.SinglyLinkedList;
 import main.com.liubin.tree.bst.BinarySearchTree;
 
-import java.util.Random;
+import java.util.HashSet;
+import java.util.List;
+import java.util.TreeSet;
+
 
 public class Test {
     public static void main(String[] args) {
 	    Integer[] arr = new Integer[]{12,5,4,8,9,18,25,69,47,24,36};
 	    BinarySearchTree<Integer> bst = new BinarySearchTree<>(arr);
-	    bst.inOrderTraversalNr();
-	    bst.remove(12);
-	    bst.inOrderTraversal();
+        List<Integer> list = bst.inOrderTraversal();
+        System.out.println(list);
     }
 
 
     public static ListNode removeElements(ListNode head, int val) {
-        if (head == null) {
+            if (head == null) {
             return null;
         }
         head.next = removeElements(head.next, val);
