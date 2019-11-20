@@ -28,7 +28,7 @@ public class LoopQueue<E> implements Queue<E> {
     @Override
     public void enQueue(E e) {
         if ((tail + 1) % data.length == head) {
-            resize(getCapacity() *2);
+            resize(getCapacity() * 2);
         }
         data[tail] = e;
         tail = (tail + 1) % data.length;

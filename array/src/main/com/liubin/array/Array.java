@@ -114,7 +114,7 @@ public class Array<E> {
             data[i - 1] = data[i];
         }
         data[--size] = null; //loitering objects
-        if (size == data.length/4 && data.length/2 !=0) {
+        if (size == data.length / 4 && data.length / 2 !=0) {
             resize(data.length/2);
         }
         return rev;
@@ -145,6 +145,28 @@ public class Array<E> {
                     size--;
                 }
             }
+        }
+    }
+
+    /**
+     * @discription 根据索引交换数组两个的两个元素位置
+     * @author liubin@segimail.com
+     * @date 2019年11月20日 17:12:26
+     * @param firstIndex
+     * @param secondIndex
+     * @return : void
+    */
+    public void swap(int firstIndex, int secondIndex) {
+        checkIndex(firstIndex);
+        checkIndex(secondIndex);
+        E t = data[firstIndex];
+        data[firstIndex] = data[secondIndex];
+        data[secondIndex] = t;
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new ArrayIndexOutOfBoundsException("index is out of bound");
         }
     }
 
