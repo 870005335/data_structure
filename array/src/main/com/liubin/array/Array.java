@@ -20,6 +20,13 @@ public class Array<E> {
         this(10);
     }
 
+    public Array(E[] arr) {
+    	data = (E[]) new Object[arr.length];
+	    for (int i = 0; i < arr.length; i++) {
+		    data[i] = arr[i];
+	    }
+    }
+
     public int getSize() {
         return this.size;
     }
@@ -34,6 +41,11 @@ public class Array<E> {
 
     public boolean isEmpty() {
         return this.size == 0;
+    }
+
+    public void set(int index, E e) {
+    	checkIndex(index);
+    	data[index] = e;
     }
 
     public void add(E e) {

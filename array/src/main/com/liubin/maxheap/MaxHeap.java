@@ -115,4 +115,27 @@ public class MaxHeap<E extends Comparable<E>> {
 			index = larger;
 		}
 	}
+
+	/**
+	 * @discription 取出最大元素并放入一个新的元素
+	 */
+	public E replace(E e) {
+		E result = findMax();
+		if (result != null) {
+			array.set(0, e);
+			siftDown(0);
+		}
+		return result;
+	}
+
+	/**
+	 * @discription 将任意一个数组转变完全二叉树的数组形式
+	 */
+	public void heapify(E[] arr) {
+		array = new Array<>(arr);
+		int lastParent = parent(array.getSize() - 1);
+		for (int i = lastParent; i >= 0; i --) {
+			siftDown(i);
+		}
+	}
 }
