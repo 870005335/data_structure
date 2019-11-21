@@ -1,20 +1,24 @@
-package test.com.liubin;
+package test.com.liubin.test;
 
 
 import main.com.liubin.LinkedList.SinglyLinkedList;
+import main.com.liubin.Student;
+import main.com.liubin.array.Array;
 import main.com.liubin.tree.bst.BinarySearchTree;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 
 public class Test {
     public static void main(String[] args) {
-	    Integer[] arr = new Integer[]{12,5,4,8,9,18,25,69,47,24,36};
-	    BinarySearchTree<Integer> bst = new BinarySearchTree<>(arr);
-        List<Integer> list = bst.inOrderTraversal();
-        System.out.println(list);
+
     }
 
 

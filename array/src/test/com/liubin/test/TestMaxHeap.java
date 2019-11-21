@@ -1,4 +1,4 @@
-package test.com.liubin;
+package test.com.liubin.test;
 
 import main.com.liubin.maxheap.MaxHeap;
 

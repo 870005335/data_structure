@@ -1,4 +1,4 @@
-package test.com.liubin;
+package test.com.liubin.test;
 
 import main.com.liubin.queue.ArrayQueue;
 import main.com.liubin.queue.LinkQueue;

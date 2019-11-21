@@ -1,4 +1,4 @@
-package test.com.liubin;
+package test.com.liubin.test;
 
 import java.util.Stack;
 
