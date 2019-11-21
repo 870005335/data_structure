@@ -1,9 +1,7 @@
 package test.com.liubin.problem;
 
-import main.com.liubin.maxheap.MaxHeap;
 import main.com.liubin.queue.PriorityQueue;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
