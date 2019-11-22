@@ -1,8 +1,6 @@
 package main.com.liubin.tree.bst;
 
 
-import org.w3c.dom.Node;
-
 import java.util.*;
 
 /**
@@ -101,7 +99,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:25
 	**/
-	public List preOrderTraversal() {
+	public List<E> preOrderTraversal() {
 		List<E> result = new ArrayList<>();
 		preOrderTraversal(root, result);
 		return result;
@@ -126,8 +124,8 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	**/
 	public List<E> preOrderTraversalNr() {
 		List<E> resultList = new ArrayList<>();
-		Node node = this.root;
 		Stack<Node> stack = new Stack<>();
+		Node node = this.root;
 		while (node != null || !stack.isEmpty()) {
 			if (node != null) {
 				resultList.add(node.e);
@@ -154,7 +152,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 		return resultList;
 	}
 
-	private void inOrderTraversal(Node node, List list) {
+	private void inOrderTraversal(Node node, List<E> list) {
 		if (null == node) {
 			return;
 		}
@@ -235,8 +233,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 			}
 		}
 		while (!outStack.isEmpty()) {
-			Node node = outStack.pop();
-			resultList.add(node.e);
+			resultList.add(outStack.pop().e);
 		}
 		return resultList;
 	}
@@ -249,12 +246,13 @@ public class BinarySearchTree<E extends Comparable<E>> {
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/15 21:27
 	**/
-	public void levelTraversal() {
+	public List<E> levelTraversal() {
+		List<E> resultList = new ArrayList<>();
 		Queue<Node> queue = new LinkedList<>();
 		queue.add(root);
 		while (!queue.isEmpty()) {
 			Node node = queue.remove();
-			System.out.print(node.e + " ");
+			resultList.add(node.e);
 			if (node.left != null) {
 				queue.add(node.left);
 			}
@@ -262,7 +260,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
 				queue.add(node.right);
 			}
 		}
-		System.out.println();
+		return resultList;
 	}
 
 
