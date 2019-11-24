@@ -15,11 +15,12 @@ public class TestMaxHeap {
 	public static void main(String[] args) {
 		int n = 1000000;
 		MaxHeap<Integer> maxHeap = new MaxHeap<>();
+		Integer[] integers = new Integer[n];
 		Random random = new Random();
 		for (int i = 0; i < n; i++) {
-			int value = random.nextInt(Integer.MAX_VALUE);
-			maxHeap.add(value);
+			integers[i] = random.nextInt(Integer.MAX_VALUE);
 		}
+		maxHeap.heapify(integers);
 		int[] arr = new int[n];
 		for (int i = 0; i < n; i++) {
 			arr[i] = maxHeap.extractMax();
