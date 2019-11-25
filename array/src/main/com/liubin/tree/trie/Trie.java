@@ -28,18 +28,19 @@ public class Trie {
 
     public void add(String word) {
         Node node = this.root;
-        add(word, node, 0);
-//        for (int i = 0; i < word.length(); i++) {
-//            char c = word.charAt(i);
-//            if (node.next.get(c) == null) {
-//                node.next.put(c, new Node());
-//            }
-//            node = node.next.get(c);
-//        }
-//        if (!node.isWord) {
-//            node.isWord = true;
-//            size++;
-//        }
+        //递归写法
+//        add(word, node, 0);
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (node.next.get(c) == null) {
+                node.next.put(c, new Node());
+            }
+            node = node.next.get(c);
+        }
+        if (!node.isWord) {
+            node.isWord = true;
+            size++;
+        }
     }
 
     private void add(String word, Node node, int i) {
