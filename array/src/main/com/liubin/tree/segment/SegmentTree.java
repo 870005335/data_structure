@@ -117,11 +117,14 @@ public class SegmentTree<E> {
     /**
      * @discription 更新某个元素
      */
-    public void set(int index, E e) {
+    public E set(int index, E e) {
         if (!checkIndex(index)) {
             throw new IllegalArgumentException("index is illegal");
         }
+        E result = data[index];
+        data[index] = e;
         set(0, 0, data.length - 1, index, e);
+        return result;
     }
 
     private void set(int treeIndex, int left, int right, int index, E e) {
@@ -132,16 +135,16 @@ public class SegmentTree<E> {
         //计算分割后中间位置索引
         int mid = left + (right - left) / 2;
         //计算左右子树根索引
-        int leftChildIndex = leftChild(treeIndex);
-        int rightChildIndex = rightChild(treeIndex);
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
         //判断要修改元素所在区间
         if (index > mid) {
-            set(rightChildIndex, mid + 1, right, index, e);
+            set(rightTreeIndex, mid + 1, right, index, e);
         } else {
-            set(leftChildIndex, left, mid, index, e);
+            set(leftTreeIndex, left, mid, index, e);
         }
         //更新祖辈节点
-        tree[treeIndex] = merger.merge(tree[leftChildIndex], tree[rightChildIndex]);
+        tree[treeIndex] = merger.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
     }
 
     @Override
