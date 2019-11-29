@@ -38,12 +38,12 @@ public class SegmentTree<E> {
         //计算分割后中间位置索引
         int mid = left + (right - left) / 2;
         //计算左右子树根索引
-        int leftChildIndex = leftChild(treeIndex);
-        int rightChildIndex = rightChild(treeIndex);
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
         //构建左右子树
-        buildSegmentTree(leftChildIndex, left, mid);
-        buildSegmentTree(rightChildIndex, mid + 1, right);
-        tree[treeIndex] = merger.merge(tree[leftChildIndex], tree[rightChildIndex]);
+        buildSegmentTree(leftTreeIndex, left, mid);
+        buildSegmentTree(rightTreeIndex, mid + 1, right);
+        tree[treeIndex] = merger.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
     }
 
     public int getSize() {

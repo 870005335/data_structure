@@ -28,18 +28,19 @@ public class Trie {
 
     public void add(String word) {
         Node node = this.root;
-        add(word, node, 0);
-//        for (int i = 0; i < word.length(); i++) {
-//            char c = word.charAt(i);
-//            if (node.next.get(c) == null) {
-//                node.next.put(c, new Node());
-//            }
-//            node = node.next.get(c);
-//        }
-//        if (!node.isWord) {
-//            node.isWord = true;
-//            size++;
-//        }
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (node.next.get(c) == null) {
+                node.next.put(c, new Node());
+            }
+            node = node.next.get(c);
+        }
+        if (!node.isWord) {
+            node.isWord = true;
+            size++;
+        }
+//        //递归写法
+//        add(word, node, 0);
     }
 
     private void add(String word, Node node, int i) {
@@ -68,6 +69,21 @@ public class Trie {
             node = node.next.get(c);
         }
         return node.isWord;
+    }
+
+    /**
+     * @discription 查询trie中是否有以prefix开头的单词
+     */
+    public boolean isPrefix(String prefix) {
+        Node node = this.root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char c = prefix.charAt(i);
+            if (node.next.get(c) == null) {
+                return false;
+            }
+            node = node.next.get(c);
+        }
+        return true;
     }
 
 
