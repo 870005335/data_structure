@@ -1,6 +1,6 @@
 package main.com.liubin.queue;
 
-import main.com.liubin.LinkedList.LinkedList;
+import main.com.liubin.linklist.LinkedList;
 
 /**
 * Title:LinkQueue.java

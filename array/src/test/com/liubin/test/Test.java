@@ -1,21 +1,6 @@
 package test.com.liubin.test;
 
 
-import main.com.liubin.LinkedList.SinglyLinkedList;
-import main.com.liubin.Student;
-import main.com.liubin.array.Array;
-import main.com.liubin.tree.bst.BinarySearchTree;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.TreeMap;
-import java.util.TreeSet;
-
-
 public class Test {
     public static void main(String[] args) {
 

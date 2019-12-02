@@ -1,4 +1,4 @@
-package main.com.liubin.LinkedList;
+package main.com.liubin.linklist;
 
 /**
  * @ClassName SinglyLinkedList

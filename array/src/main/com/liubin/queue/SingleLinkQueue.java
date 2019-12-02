@@ -1,6 +1,6 @@
 package main.com.liubin.queue;
 
-import main.com.liubin.LinkedList.SinglyLinkedList;
+import main.com.liubin.linklist.SinglyLinkedList;
 
 /**
 * Title:SingleLinkQueue.java

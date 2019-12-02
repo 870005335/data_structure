@@ -1,6 +1,6 @@
 package main.com.liubin.stack;
 
-import main.com.liubin.LinkedList.LinkedList;
+import main.com.liubin.linklist.LinkedList;
 
 /**
 * Title:LinkStack.java

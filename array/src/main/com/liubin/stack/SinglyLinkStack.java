@@ -1,6 +1,6 @@
 package main.com.liubin.stack;
 
-import main.com.liubin.LinkedList.SinglyLinkedList;
+import main.com.liubin.linklist.SinglyLinkedList;
 
 /**
 * Title:SingleLinkStack.java

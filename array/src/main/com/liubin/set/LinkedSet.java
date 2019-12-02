@@ -1,7 +1,7 @@
 package main.com.liubin.set;
 
 
-import main.com.liubin.LinkedList.SinglyLinkedList;
+import main.com.liubin.linklist.SinglyLinkedList;
 
 /**
  * @ClassName LinkedSet
