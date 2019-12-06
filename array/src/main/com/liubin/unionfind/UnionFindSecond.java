@@ -17,7 +17,7 @@ public class UnionFindSecond implements UnionFind {
 		eSize = new int[size];
 		for (int i = 0; i < size; i++) {
 			parent[i] = i;
-			eSize[i] = i;
+			eSize[i] = 1;
 		}
 	}
 

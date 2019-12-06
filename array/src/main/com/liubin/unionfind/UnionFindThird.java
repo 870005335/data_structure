@@ -17,7 +17,7 @@ public class UnionFindThird implements UnionFind {
 		rank = new int[size];
 		for (int i = 0; i < size; i++) {
 			parent[i] = i;
-			rank[i] = i;
+			rank[i] = 1;
 		}
 	}
 
