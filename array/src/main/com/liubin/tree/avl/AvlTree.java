@@ -1,22 +1,90 @@
-package main.com.liubin.map;
+package main.com.liubin.tree.avl;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
-* Title:BstMap.java
-* @discription: 基于二分搜索树的映射Map
+* Title:AvlTree.java
+* @discription: AVL(平衡二叉树) 二分搜索树
 * @author liubin@segi.com
-* @created 2019-11-18 17:39
+* @created 2019-12-12 18:16
 */
-public class BstMap<K extends Comparable<K>, V> implements Map<K, V> {
+public class AvlTree<K extends Comparable<K>, V>{
 
 	private Node root;
 	private int size;
 
-	public BstMap() {
+	public AvlTree() {
 		root = null;
 		size = 0;
 	}
 
-	@Override
+
+	/**
+	 * @discription 获取节点的高度
+	 */
+	private int getHeight(Node node) {
+		if (node == null) {
+			return 0;
+		}
+		return node.height;
+	}
+
+	/**
+	 * @discription 计算node节点的平衡因子
+	 */
+	private int getBalanceFactor(Node node) {
+		if (node == null) {
+			return 0;
+		}
+		return Math.abs(getHeight(node.left) - getHeight(node.right));
+	}
+
+	/**
+	 * @discription 判断一棵树是否是平衡二叉树
+	 */
+	public boolean isBalanced() {
+		return isBalanced(root);
+	}
+
+	/**
+	 * @discription 判断一棵树是否是平衡二叉树 递归算法
+	 */
+	private boolean isBalanced(Node node) {
+		if (node == null) {
+			return true;
+		}
+		int balanceFactor = getBalanceFactor(node);
+		if (balanceFactor > 1) {
+			return false;
+		}
+		return isBalanced(node.left) && isBalanced(node.right);
+	}
+
+	/**
+	 * @discription 判断以root为根的二叉树是不是二分搜索树
+	 */
+	private boolean isBinarySearchTree() {
+		List<K> keyList = new ArrayList<>();
+		inOrderTraversal(root, keyList);
+		for (int i = 1; i < keyList.size(); i++) {
+			if (keyList.get(i - 1).compareTo(keyList.get(i)) > 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private void inOrderTraversal(Node node, List<K> keyList) {
+		if (node == null) {
+			return;
+		}
+		inOrderTraversal(node.left, keyList);
+		keyList.add(node.key);
+		inOrderTraversal(node.right, keyList);
+	}
+
 	public void add(K key, V value) {
 		root = add(root, key, value);
 	}
@@ -33,6 +101,8 @@ public class BstMap<K extends Comparable<K>, V> implements Map<K, V> {
 		} else {
 			node.value = value;
 		}
+		//更新node的高度值
+		node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
 		return node;
 	}
 
@@ -44,7 +114,7 @@ public class BstMap<K extends Comparable<K>, V> implements Map<K, V> {
 	 * @Return: main.com.liubin.map.BstMap<K,V>.Node
 	 * @Author: Arthas_liubin@Foxmail.com
 	 * @Date: 2019/11/18 20:51
-	**/
+	 **/
 	private Node getNode(Node node, K key) {
 		if (node == null) {
 			return null;
@@ -76,7 +146,6 @@ public class BstMap<K extends Comparable<K>, V> implements Map<K, V> {
 		return node;
 	}
 
-	@Override
 	public V remove(K key) {
 		Node node = getNode(root, key);
 		if (node != null) {
@@ -116,19 +185,16 @@ public class BstMap<K extends Comparable<K>, V> implements Map<K, V> {
 		}
 	}
 
-	@Override
 	public boolean contains(K key) {
 		Node node = getNode(root, key);
 		return node != null;
 	}
 
 
-	@Override
 	public V get(K key) {
 		return getNode(root, key).value;
 	}
 
-	@Override
 	public void set(K key, V value) {
 		Node node = getNode(root, key);
 		if (node != null) {
@@ -136,32 +202,33 @@ public class BstMap<K extends Comparable<K>, V> implements Map<K, V> {
 		}
 	}
 
-	@Override
 	public int getSize() {
 		return size;
 	}
 
-	@Override
+
 	public boolean isEmpty() {
 		return size == 0;
 	}
+
 
 	private class Node {
 		private K key;
 		private V value;
 		private Node left;
 		private Node right;
+		private int height;
 
-
-		private Node(K key, V value, Node left, Node right) {
+		Node(K key, V value, Node left, Node right, int height) {
 			this.key = key;
 			this.value = value;
 			this.left = left;
 			this.right = right;
+			this.height = height;
 		}
 
 		private Node(K key, V value) {
-			this(key, value, null, null);
+			this(key, value, null, null, 1);
 		}
 
 		@Override
