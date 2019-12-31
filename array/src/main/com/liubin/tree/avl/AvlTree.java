@@ -38,7 +38,7 @@ public class AvlTree<K extends Comparable<K>, V>{
 		if (node == null) {
 			return 0;
 		}
-		return Math.abs(getHeight(node.left) - getHeight(node.right));
+		return getHeight(node.left) - getHeight(node.right);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class AvlTree<K extends Comparable<K>, V>{
 			return true;
 		}
 		int balanceFactor = getBalanceFactor(node);
-		if (balanceFactor > 1) {
+		if (Math.abs(balanceFactor) > 1) {
 			return false;
 		}
 		return isBalanced(node.left) && isBalanced(node.right);
@@ -65,7 +65,7 @@ public class AvlTree<K extends Comparable<K>, V>{
 	/**
 	 * @discription 判断以root为根的二叉树是不是二分搜索树
 	 */
-	private boolean isBinarySearchTree() {
+	public boolean isBinarySearchTree() {
 		List<K> keyList = new ArrayList<>();
 		inOrderTraversal(root, keyList);
 		for (int i = 1; i < keyList.size(); i++) {
@@ -85,6 +85,45 @@ public class AvlTree<K extends Comparable<K>, V>{
 		inOrderTraversal(node.right, keyList);
 	}
 
+
+
+	/**
+	 * @discription 对以node为根的二叉树进行左旋转操作
+	 */
+	private Node leftRotate(Node node) {
+		//找到当前节点的右孩子节点
+		Node right = node.right;
+		//将右孩子节点的左子树挂接到node的右节点
+		node.right = right.left;
+		//将操作后的node挂接到右孩子节点的左边
+		right.left = node;
+		//更新需要更新节点的高度值
+		node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+		right.height = Math.max(getHeight(right.left), getHeight(right.right)) + 1;
+		//返回以右孩子为根的二叉树
+		return right;
+	}
+
+
+
+	/**
+	 * @discription 对以node为根的二叉树进行右旋转操作
+	 */
+	private Node rightRotate(Node node) {
+		//找到当前节点的左孩子节点
+		Node left = node.left;
+		//将左孩子节点的右子树挂接到node的左边
+		node.left = left.right;
+		//将更新后的节点挂接到左孩子节点的右边
+		left.right = node;
+		//更新节点的高度值
+		node.height = Math.max(getHeight(node.left), getHeight(node.right)) + 1;
+		left.height = Math.max(getHeight(left.left), getHeight(left.right)) + 1;
+		//返回以左孩子为根的二叉树
+		return left;
+	}
+
+
 	public void add(K key, V value) {
 		root = add(root, key, value);
 	}
@@ -103,6 +142,25 @@ public class AvlTree<K extends Comparable<K>, V>{
 		}
 		//更新node的高度值
 		node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
+		//计算平衡因子
+		int balanceFactor = getBalanceFactor(node);
+		//节点的平衡因子的绝对值大于一，说明不是平衡二叉树，进行处理
+		if (balanceFactor > 1) {
+			//插入的节点在不平衡节点左侧的右侧(LR)，进行右旋转操作 转化为LL的情况
+			if (getBalanceFactor(node.left) < 0) {
+				node.left = leftRotate(node.left);
+			}
+			//不平衡为LL的情况下，对整棵子树进行右旋转操作
+			return rightRotate(node);
+		}
+		if (balanceFactor < -1) {
+			//插入的节点在不平衡节点右侧的左侧(RL)，进行右旋转操作 转化为RR的情况
+			if (getBalanceFactor(node.right) > 0) {
+				node.right = rightRotate(node.right);
+			}
+			//不平衡为RR的情况下，对整棵子树进行左旋转操作
+			return leftRotate(node);
+		}
 		return node;
 	}
 
