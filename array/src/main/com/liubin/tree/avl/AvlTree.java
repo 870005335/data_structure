@@ -10,7 +10,7 @@ import java.util.List;
 * @author liubin@segi.com
 * @created 2019-12-12 18:16
 */
-public class AvlTree<K extends Comparable<K>, V>{
+public class AvlTree<K extends Comparable<K>, V> {
 
 	private Node root;
 	private int size;
@@ -146,7 +146,7 @@ public class AvlTree<K extends Comparable<K>, V>{
 		int balanceFactor = getBalanceFactor(node);
 		//节点的平衡因子的绝对值大于一，说明不是平衡二叉树，进行处理
 		if (balanceFactor > 1) {
-			//插入的节点在不平衡节点左侧的右侧(LR)，进行右旋转操作 转化为LL的情况
+			//插入的节点在不平衡节点左侧的右侧(LR)，进行左旋转操作 转化为LL的情况
 			if (getBalanceFactor(node.left) < 0) {
 				node.left = leftRotate(node.left);
 			}
@@ -204,6 +204,9 @@ public class AvlTree<K extends Comparable<K>, V>{
 		return node;
 	}
 
+	/**
+	 * @discription 移除元素
+	 */
 	public V remove(K key) {
 		Node node = getNode(root, key);
 		if (node != null) {
@@ -217,30 +220,56 @@ public class AvlTree<K extends Comparable<K>, V>{
 		if (node == null) {
 			return null;
 		}
+		//设置一个node来接收结果
+		Node resultNode;
 		if (key.compareTo(node.key) < 0) {
 			node.left = remove(node.left, key);
-			return node;
+			resultNode = node;
 		} else if (key.compareTo(node.key) > 0) {
 			node.right = remove(node.right, key);
-			return node;
+			resultNode = node;
 		} else {
+			//要删除的节点左子树为空
 			if (node.left == null) {
 				Node right = node.right;
 				node.right = null;
 				size--;
-				return right;
-			}
-			if (node.right == null) {
+				resultNode = right;
+			}else if (node.right == null) {
+				//要删除的节点右子树为空
 				Node left = node.left;
 				node.left = null;
 				size--;
-				return left;
+				resultNode = left;
+			} else {
+				//要删除的节点左右字数均不为空
+				Node successor = getMin(node.right);
+				//使用原来的移除最小值得方法可能打破平衡 successor.right = removeMin(node.right);
+				successor.right = remove(node.right, successor.key);
+				successor.left = node.left;
+				resultNode = successor;
 			}
-			Node successor = node.right;
-			successor.left = node.left;
-			successor.right = removeMin(node.right);
-			return successor;
 		}
+		//删除的节点如果是叶子节点，resultNode就会为空
+		if (resultNode != null) {
+			//更新节点高度
+			resultNode.height = Math.max(getHeight(resultNode.left), getHeight(resultNode.right)) + 1;
+			//计算平衡因子
+			int balanceFactor = getBalanceFactor(resultNode);
+			if (balanceFactor > 1) {
+				if (getBalanceFactor(resultNode.left) < 0) {
+					resultNode.left = leftRotate(resultNode.left);
+				}
+				resultNode = rightRotate(resultNode);
+			}
+			if (balanceFactor < -1) {
+				if (getBalanceFactor(resultNode.right) > 0) {
+					resultNode.right = rightRotate(resultNode.right);
+				}
+				resultNode = leftRotate(resultNode);
+			}
+		}
+		return resultNode;
 	}
 
 	public boolean contains(K key) {
