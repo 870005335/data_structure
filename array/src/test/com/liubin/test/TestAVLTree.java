@@ -13,10 +13,12 @@ public class TestAVLTree {
 
     public static void main(String[] args) {
         AvlTree<Integer, Integer> avlTree = new AvlTree<>();
-        avlTree.add(12, 12);
-        avlTree.add(9, 9);
         avlTree.add(10, 10);
-        System.out.println(avlTree.isBalanced());
-        System.out.println(avlTree.isBinarySearchTree());
+        avlTree.add(9, 9);
+        avlTree.add(12, 12);
+        avlTree.add(11, 11);
+        System.out.println(avlTree.getHeight(12));
+        avlTree.remove(10);
+        System.out.println(avlTree.getHeight(11));
     }
 }

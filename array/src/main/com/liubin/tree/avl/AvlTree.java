@@ -247,6 +247,7 @@ public class AvlTree<K extends Comparable<K>, V> {
 				//使用原来的移除最小值得方法可能打破平衡 successor.right = removeMin(node.right);
 				successor.right = remove(node.right, successor.key);
 				successor.left = node.left;
+				node.left = node.right = null;
 				resultNode = successor;
 			}
 		}
@@ -280,6 +281,10 @@ public class AvlTree<K extends Comparable<K>, V> {
 
 	public V get(K key) {
 		return getNode(root, key).value;
+	}
+
+	public int getHeight(K key) {
+		return getNode(root, key).height;
 	}
 
 	public void set(K key, V value) {
